@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 const CardLogin = (props: any) => {
   return (
-    <div
+    <motion.div
       style={{
         height: "100vh",
         display: "flex",
@@ -23,7 +24,7 @@ const CardLogin = (props: any) => {
       >
         {props.children}
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default CardLogin;

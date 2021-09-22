@@ -47,8 +47,8 @@ function App() {
                   <Link className="Link" to="/score">
                     Score
                   </Link>
-                  <Link className="Link" to="/result">
-                    Result
+                  <Link className="Link" to="/create">
+                    Create
                   </Link>
 
                   <Link className="Link" to="/logout">
@@ -57,7 +57,7 @@ function App() {
                 </>
               ) : (
                 <>
-                  {" "}
+                  
                   <Link className="Link" to="/signup">
                     SignUp
                   </Link>
@@ -91,7 +91,7 @@ function App() {
               <Route exact path="/score" component={Score} />
               <Route exact path="/score/:id" component={Updates} />
 
-              <Route path="/result" component={Result} />
+              <Route path="/create" component={Result} />
               <Route path="/logout" component={Logout} />
 
               <Redirect to="/" />

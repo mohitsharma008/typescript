@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { authOne } from "../../Firebase";
 import Button from "../../Reusable/UI/Button/Button";
 import { useActions } from "../../Redux/hooks/useAction";
 import Input from "../../Reusable/UI/Input/Input";
+import { motion } from "framer-motion";
 import CardLogin from "../../Reusable/UI/CardLogin/CardLogin";
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -36,7 +38,10 @@ const Login = () => {
   return (
     <CardLogin>
       <form onSubmit={handleSubmit}>
-        <div
+        <motion.div
+          initial={{ x: 150, scale: 1 }}
+          animate={{ x: 0, scale: 1 }}
+          transition={{ stiffness: 100, type: "spring" }}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -66,7 +71,6 @@ const Login = () => {
             type="password"
             onChange={(e) => handleChange(e)}
           />
-          <hr />
           <div
             style={{
               display: "flex",
@@ -74,8 +78,13 @@ const Login = () => {
               justifyContent: "center",
             }}
           ></div>
+          <Link to="/signup" style={{ color: "white", textDecoration: "none" }}>
+            <br />
+            Create a new account?
+            <hr />
+          </Link>
           <Button type={"submit"}>SignIn</Button>
-        </div>
+        </motion.div>
       </form>
     </CardLogin>
   );

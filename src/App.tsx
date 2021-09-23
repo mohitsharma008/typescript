@@ -5,6 +5,7 @@ import {
   Redirect,
   Link,
   Switch,
+  useLocation,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Dashboard from "./Components/Dashboard/Dashboard";
@@ -14,12 +15,15 @@ import Result from "./Components/Result/Result";
 import SignUp from "./Components/Auth/SignUp";
 import Login from "./Components/Auth/Login";
 import Logout from "./Components/Auth/Logout";
+// import { useLocation } from "react-router-dom";
 import { authOne } from "./Firebase";
 // import { useSelector } from "react-redux";
 import { useTypedSelector } from "./Redux/hooks/useSelect";
 import Updates from "./Components/Score/Updates/Updates";
+import { AnimatePresence } from "framer-motion";
 function App() {
   const [userId, setUserId] = useState<string | null>(null);
+  const location = useLocation();
   const { error, loading, token } = useTypedSelector(
     (state) => state.repositories
   );
@@ -57,7 +61,6 @@ function App() {
                 </>
               ) : (
                 <>
-                  
                   <Link className="Link" to="/signup">
                     SignUp
                   </Link>
@@ -97,11 +100,13 @@ function App() {
               <Redirect to="/" />
             </Switch>
           ) : (
-            <Switch>
-              <Route path="/signup" component={SignUp} />
-              <Route path="/login" component={Login} />
-              <Redirect to="/signup" />
-            </Switch>
+            <AnimatePresence>
+              <Switch>
+                <Route path="/signup" component={SignUp} />
+                <Route path="/login" component={Login} />
+                <Redirect to="/signup" />
+              </Switch>
+            </AnimatePresence>
           )}
         </div>
         {/* </div> */}

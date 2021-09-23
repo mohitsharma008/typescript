@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import reportWebVitals from "./reportWebVitals";
 import { createStore, applyMiddleware } from "redux";
 import reducers from "./Redux/Combine";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
@@ -19,11 +20,13 @@ const store = createStore(persistedReducer, {}, applyMiddleware(thunk));
 const persistor = persistStore(store);
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
+    <Router>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

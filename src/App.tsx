@@ -27,6 +27,10 @@ function App() {
   const { error, loading, token } = useTypedSelector(
     (state) => state.repositories
   );
+  const { pathname } = location;
+  const splitLocation = pathname.split("/");
+  console.log(splitLocation);
+
   useEffect(() => {
     authOne.onAuthStateChanged((user: any) => {
       console.log(user, "+mogitt");
@@ -36,81 +40,114 @@ function App() {
   console.log(userId, "==");
   return (
     <div className="Body">
-      <Router>
-        <div className="Header">
-          <div style={{ width: "50%" }}>
-            <div className="ContentManage">
-              {token ? (
-                <>
-                  <Link className="Link" to="/">
-                    Home
-                  </Link>
-                  <Link className="Link" to="/dashboard">
-                    Dashboard
-                  </Link>
-                  <Link className="Link" to="/score">
-                    Score
-                  </Link>
-                  <Link className="Link" to="/create">
-                    Create
-                  </Link>
+      {/* <Router> */}
+      <div className="Header">
+        <div style={{ width: "50%" }}>
+          <div className="ContentManage">
+            {token ? (
+              <>
+                <Link
+                  className={`Link ${splitLocation[1] === "" ? "active" : ""}`}
+                  to="/"
+                >
+                  Home
+                </Link>
+                <Link
+                  className={`Link ${
+                    splitLocation[1] === "dashboard" ? "active" : ""
+                  }`}
+                  to="/dashboard"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  className={`Link ${
+                    splitLocation[1] === "score" ? "active" : ""
+                  }`}
+                  to="/score"
+                >
+                  Score
+                </Link>
+                <Link
+                  className={`Link ${
+                    splitLocation[1] === "create" ? "active" : ""
+                  }`}
+                  to="/create"
+                >
+                  Create
+                </Link>
 
-                  <Link className="Link" to="/logout">
-                    Logout
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link className="Link" to="/signup">
-                    SignUp
-                  </Link>
-                  <Link className="Link" to="/login">
-                    Login
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-          <div
-            style={{
-              width: "50%",
-              height: "30px",
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              fontSize: "18px",
-              marginRight: 5,
-            }}
-          >
-            {token && <h3 style={{ color: "orange" }}>{userId}</h3>}
+                <Link
+                  className={`Link ${
+                    splitLocation[1] === "logout" ? "active" : ""
+                  }`}
+                  to="/logout"
+                >
+                  Logout
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/signup"
+                  className={`Link ${
+                    splitLocation[1] === "signup" ? "active" : ""
+                  }`}
+                >
+                  SignUp
+                </Link>
+                <Link
+                  className={`Link ${
+                    splitLocation[1] === "login" ? "active" : ""
+                  }`}
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </div>
-        {/* <div className="Content"> */}
-        <div className="ContentManage">
-          {token ? (
+        <div
+          style={{
+            width: "50%",
+            height: "30px",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            fontSize: "18px",
+            marginRight: 5,
+          }}
+        >
+          {token && <h3 style={{ color: "orange" }}>{userId}</h3>}
+        </div>
+      </div>
+      {/* <div className="Content"> */}
+      <div className="ContentManage">
+        {token ? (
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route exact path="/score" component={Score} />
+            <Route exact path="/score/:id" component={Updates} />
+
+            <Route path="/create" component={Result} />
+            <Route path="/logout" component={Logout} />
+
+            <Redirect to="/" />
+          </Switch>
+        ) : (
+          <AnimatePresence>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/dashboard" component={Dashboard} />
-              <Route exact path="/score" component={Score} />
-              <Route exact path="/score/:id" component={Updates} />
-
-              <Route path="/create" component={Result} />
-              <Route path="/logout" component={Logout} />
-
-              <Redirect to="/" />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/login" component={Login} />
+              <Redirect to="/signup" />
             </Switch>
-          ) : (
-            <AnimatePresence>
-              <Switch>
-                <Route path="/signup" component={SignUp} />
-                <Route path="/login" component={Login} />
-                <Redirect to="/signup" />
-              </Switch>
-            </AnimatePresence>
-          )}
-        </div>
-        {/* </div> */}
-      </Router>
+          </AnimatePresence>
+        )}
+      </div>
+      {/* </div> */}
+      {/* </Router> */}
     </div>
   );
 }

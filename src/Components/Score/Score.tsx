@@ -35,7 +35,7 @@ const Score = () => {
   };
   return (
     <MotionWrapper>
-      <div style={{ paddingTop: "30px" }}>
+      <div style={{ paddingTop: "35px" }}>
         <p></p>
 
         {data &&

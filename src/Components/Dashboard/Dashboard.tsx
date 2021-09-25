@@ -31,7 +31,7 @@ const Dashboard = () => {
   return (
     <MotionWrapper>
       {" "}
-      <div style={{ paddingTop: "30px" }}>
+      <div style={{ paddingTop: "35px", color: "#bbc5c7" }}>
         <h3>PROGRAMMING LANGUAGES</h3>
         <ul style={{ marginLeft: 15 }}>
           <li>
@@ -68,21 +68,43 @@ const Dashboard = () => {
             to the public in 2015.
           </li>
         </ul>
-        <div style={{marginLeft:50,marginRight:50,display:"flex", flexWrap:"wrap",justifyContent:"space-between"}}>
+        <div
+          style={{
+            marginLeft: 50,
+            marginRight: 50,
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
           {logo.map((logo, index) => {
             return (
-            <div style={{width:150,height:150,display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"golden"}}>
-             <div style={{alignItems:"center",display:"flex", flexDirection:"column"}}>
-            
-              <img
-                style={{ height: 100, width: 100 }}
-                src={logo.url}
-                alt="react"
-              />
-              <p>{logo.name}</p>
-            </div>
-           </div> 
-           );
+              <div
+                style={{
+                  width: 150,
+                  height: 150,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "golden",
+                }}
+              >
+                <div
+                  style={{
+                    alignItems: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <img
+                    style={{ height: 100, width: 100 }}
+                    src={logo.url}
+                    alt="react"
+                  />
+                  <p>{logo.name}</p>
+                </div>
+              </div>
+            );
           })}
         </div>
       </div>

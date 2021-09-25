@@ -7,9 +7,15 @@ const Home = () => {
   };
   return (
     <MotionWrapper>
-      <div style={{ paddingTop: "30px" }}>
-        <button onClick={handleSome}>Click</button>
-        <h3 style={{ textAlign: "justify", textJustify: "inter-word" }}>
+      <div style={{ paddingTop: "35px" }}>
+        <h3
+          style={{
+            textAlign: "justify",
+            color: "#bbc5c7",
+
+            textJustify: "inter-word",
+          }}
+        >
           Paragraphs are the building blocks of papers. Many students define
           paragraphs in terms of length: a paragraph is a group of at least five
           sentences, a paragraph is half a page long, etc. In reality, though,
@@ -24,7 +30,14 @@ const Home = () => {
           “controlling idea,” because it controls what happens in the rest of
           the paragraph.
         </h3>
-        <h3 style={{ textAlign: "justify", textJustify: "inter-word" }}>
+        <h3
+          style={{
+            textAlign: "justify",
+
+            color: "#bbc5c7",
+            textJustify: "inter-word",
+          }}
+        >
           Since the commercialization of the Web, Web development has been a
           growing industry. The growth of this industry is being driven by
           businesses wishing to use their Web site to advertise and sell
@@ -73,7 +86,14 @@ const Home = () => {
           organizations with a more personal and interactive way to engage the
           public.{" "}
         </h3>
-        <h3 style={{ textAlign: "justify", textJustify: "inter-word" }}>
+        <h3
+          style={{
+            textAlign: "justify",
+            color: "#bbc5c7",
+
+            textJustify: "inter-word",
+          }}
+        >
           Security considerations Web development takes into account many
           security considerations, such as data entry error checking through
           forms, filtering output, and encryption. Malicious practices such as

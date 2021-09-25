@@ -36,7 +36,7 @@
   color: #d9f7bc;
 }
 .active {
-  box-shadow: 0px 2px 5px white;
+  box-shadow: 0px 2px 6px orange;
   color: "red";
 }
 //////////////////////////////////////////////

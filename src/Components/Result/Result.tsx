@@ -26,7 +26,9 @@ const Result = () => {
     data.push({ name: "", time: "" });
   }, [numberUpdates]);
   const handleClick = () => {
-    for (var i = 0; i <= 4; i++) {
+    const a = data.length;
+
+    for (var i = 0; i <= a - 1; i++) {
       if (data[i].name === "" && data[i].time === "") {
         console.log("check");
       }

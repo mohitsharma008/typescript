@@ -1,8 +1,14 @@
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 const Home = () => {
+  const handleSome = () => {
+    const date = new Date().getSeconds();
+    const date1 = ("0" + new Date().getSeconds()).slice(-2);
+    console.log(date1);
+  };
   return (
     <MotionWrapper>
       <div style={{ paddingTop: "30px" }}>
+        <button onClick={handleSome}>Click</button>
         <h3 style={{ textAlign: "justify", textJustify: "inter-word" }}>
           Paragraphs are the building blocks of papers. Many students define
           paragraphs in terms of length: a paragraph is a group of at least five

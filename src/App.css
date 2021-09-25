@@ -10,6 +10,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  box-shadow: 5px 0px 12px 2px orange;
   align-items: center;
   background-color: #0e3047;
 }

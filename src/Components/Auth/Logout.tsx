@@ -12,7 +12,6 @@ const Logout = () => {
       await authOne
         .signOut()
         .then((res) => {
-          console.log(res);
           logout();
         })
         .catch((err) => console.log(err));
@@ -38,7 +37,7 @@ const Logout = () => {
             paddingLeft: 20,
             paddingTop: 40,
             borderRadius: "5px",
-            boxShadow: "0px 0px 6px 15px orange",
+            boxShadow: "0px 0px 15px 5px orange",
           }}
         >
           <h1 style={{ color: "white" }}>Are You Sure To Logout?</h1>

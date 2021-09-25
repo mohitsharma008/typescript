@@ -21,8 +21,6 @@ const SignUp = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(app);
-    console.log("gefe");
     try {
       await authOne
         .createUserWithEmailAndPassword(email, password)
@@ -56,7 +54,7 @@ const SignUp = () => {
               paddingLeft: 20,
               paddingTop: 40,
               borderRadius: "5px",
-              boxShadow: "0px 0px 6px 15px orange",
+              boxShadow: "0px 0px 15px 5px orange",
             }}
           >
             <h3 style={{ color: "white", marginBottom: 20 }}>SIGNUP</h3>

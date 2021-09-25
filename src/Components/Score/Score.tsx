@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import { Link, withRouter } from "react-router-dom";
@@ -32,7 +33,6 @@ const Score = () => {
       .then((res) => getUser())
       .catch((del) => console.log("cat"));
   };
-
   return (
     <MotionWrapper>
       <div style={{ paddingTop: "30px" }}>
@@ -42,55 +42,59 @@ const Score = () => {
           keys &&
           data.map((user: any, index: any) => {
             return (
-              <motion.div
-                initial={{ x: -150, scale: 1 }}
-                animate={{ x: 0, scale: 1 }}
-                transition={{ type: "spring", stiffness: 60 }}
-                key={index}
-                style={{
-                  backgroundColor: "orange",
-                  border: "1px solid red",
-                  marginBottom: 7,
-                  marginRight: 30,
-                  marginLeft: 30,
-                }}
-              >
+              <div>
                 <motion.div
+                  initial={{ x: -150, scale: 1 }}
+                  animate={{ x: 0, scale: 1 }}
+                  transition={{ type: "spring", stiffness: 60 }}
+                  key={index}
                   style={{
-                    marginLeft: 5,
-                    marginRight: 5,
-                    flexWrap: "wrap",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    flexShrink: 4,
+                    backgroundColor: "orange",
+                    border: "1px solid red",
+                    marginBottom: 7,
+                    marginRight: 30,
+                    marginLeft: 30,
                   }}
                 >
-                  <Link
+                  <motion.div
                     style={{
-                      textDecoration: "none",
-                      color: "white",
-                      fontSize: 18,
-                      border: "1px solid #152833",
-                      backgroundColor: "#152833",
-                    }}
-                    to={{
-                      pathname: `/score/${user.id}`,
-                      state: {
-                        data: keys[index],
-                      },
+                      marginLeft: 5,
+                      marginRight: 5,
+                      flexWrap: "wrap",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      flexShrink: 4,
                     }}
                   >
-                    Your Update{" "}
-                  </Link>
-                  {/* <Link to={`/score/${user.id}`}>Link</Link> */}
-                  {/* <Updates /> */}
-                  <button onClick={() => handleDelete(keys[index])}>
-                    Delete
-                  </button>
-                  <h2>{user.timeStamp}</h2>
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: "white",
+                        fontSize: 18,
+                        border: "1px solid #152833",
+                        backgroundColor: "#152833",
+                      }}
+                      to={{
+                        pathname: `/score/${user.id}`,
+                        state: {
+                          data: keys[index],
+                        },
+                      }}
+                    >
+                      Your Update{" "}
+                    </Link>
+
+                    {/* <Link to={`/score/${user.id}`}>Link</Link> */}
+                    {/* <Updates /> */}
+                    <h2>{user.timeStamp}</h2>
+
+                    <button onClick={() => handleDelete(keys[index])}>
+                      <FaRegTrashAlt size={20} />
+                    </button>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              </div>
             );
           })}
       </div>

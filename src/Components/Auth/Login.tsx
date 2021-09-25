@@ -19,14 +19,11 @@ const Login = () => {
     }
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("gello");
     e.preventDefault();
-    console.log(email, password);
     try {
       await authOne
         .signInWithEmailAndPassword(email, password)
         .then((res: any) => {
-          console.log(res.user.multiFactor.user.accessToken);
           setEmail("");
           setPassword("");
           signIn(res.user.multiFactor.user.accessToken);
@@ -54,7 +51,7 @@ const Login = () => {
               paddingRight: 20,
               paddingLeft: 20,
               paddingTop: 40,
-              boxShadow: "0px 0px 6px 15px orange",
+              boxShadow: "0px 0px 15px 5px orange",
               borderRadius: "5px",
             }}
           >

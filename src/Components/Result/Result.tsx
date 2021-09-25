@@ -24,32 +24,45 @@ const Result = () => {
   // }, []);
   useEffect(() => {
     data.push({ name: "", time: "" });
-    console.log(data);
   }, [numberUpdates]);
   const handleClick = () => {
-    axios
-      .post(`https://updates-manange-default-rtdb.firebaseio.com/data/.json`, {
-        data,
-        timeStamp:
-          new Date().getDate() +
-          "/" +
-          (new Date().getMonth() + 1) +
-          "/" +
-          new Date().getFullYear() +
-          " @ " +
-          new Date().getHours() +
-          ":" +
-          new Date().getMinutes() +
-          ":" +
-          new Date().getSeconds(),
-        id: uuidv4(),
-      })
-      .then((res) => {
-        console.log("succes");
-        setValue({ name: "" });
-        history.push("/score");
-      })
-      .catch((err) => console.log(err));
+    for (var i = 0; i <= 4; i++) {
+      if (data[i].name === "" && data[i].time === "") {
+        console.log("check");
+      }
+      if (data[i].name !== "" && data[i].time !== "") {
+        const hour = ("0" + new Date().getHours()).slice(-2);
+        const minute = ("0" + new Date().getMinutes()).slice(-2);
+        const second = ("0" + new Date().getSeconds()).slice(-2);
+
+        axios
+          .post(
+            `https://updates-manange-default-rtdb.firebaseio.com/data/.json`,
+            {
+              data,
+              timeStamp:
+                new Date().getDate() +
+                "/" +
+                (new Date().getMonth() + 1) +
+                "/" +
+                new Date().getFullYear() +
+                " @ " +
+                hour +
+                ":" +
+                minute +
+                ":" +
+                second,
+
+              id: uuidv4(),
+            }
+          )
+          .then((res) => {
+            setValue({ name: "" });
+            history.push("/score");
+          })
+          .catch((err) => console.log(err));
+      }
+    }
   };
   const handleInputField = (e: any, i: any) => {
     const arr = [...data];
@@ -62,58 +75,65 @@ const Result = () => {
       setData(arr);
     }
   };
-  console.log(data);
   const handleListUpdates = () => {
     setNumberUpdates((prev) => prev + 1);
   };
   return (
-    <MotionWrapper>
-      <div
-        style={{
-          paddingTop: "30px",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <h3>Result</h3>
-        <br />
-        {Array(numberUpdates)
-          .fill(0)
-          .map((n, i) => (
-            <div style={{ alignItems: "center", display: "flex" }}>
-              Desciption Task:
-              <input
-                type="text"
-                style={{ width: 300, height: 30 }}
-                onChange={(e) => handleInputField(e, i)}
-                name="description"
-              />
-              Time:
-              <input
-                type="text"
-                name="time"
-                onChange={(e) => handleInputField(e, i)}
-                style={{ width: 300, height: 30 }}
-              />
-            </div>
-          ))}
+    <div
+      style={{
+        paddingTop: "30px",
+      }}
+    >
+      <MotionWrapper>
         <div
           style={{
+            marginTop: "10px",
             display: "flex",
-            bottom: 50,
-            right: 50,
-            position: "absolute",
+            height: "500px",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "#c2daff",
+            overflow: "auto",
           }}
         >
-          <div style={{ marginRight: 10 }}>
-            <Button onClick={handleListUpdates}>New</Button>
+          <h3>Result</h3>
+          <br />
+          {Array(numberUpdates)
+            .fill(0)
+            .map((n, i) => (
+              <div style={{ alignItems: "center", display: "flex" }}>
+                Desciption Task:
+                <input
+                  type="text"
+                  style={{ width: 300, height: 30 }}
+                  onChange={(e) => handleInputField(e, i)}
+                  name="description"
+                />
+                Time:
+                <input
+                  type="text"
+                  name="time"
+                  onChange={(e) => handleInputField(e, i)}
+                  style={{ width: 300, height: 30 }}
+                />
+              </div>
+            ))}
+          <div
+            style={{
+              display: "flex",
+              right: 50,
+              bottom: 50,
+              position: "absolute",
+            }}
+          >
+            <div style={{ marginRight: 10 }}>
+              <Button onClick={handleListUpdates}>New</Button>
+            </div>
+            <Button onClick={handleClick}>Save Blog</Button>
           </div>
-          <Button onClick={handleClick}>Save Blog</Button>
         </div>
-      </div>
-    </MotionWrapper>
+      </MotionWrapper>
+    </div>
   );
 };
 export default Result;

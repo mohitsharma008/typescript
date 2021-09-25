@@ -5,7 +5,7 @@ interface UpdateProps {
   value: string;
 }
 const Updates = (props: any) => {
-  const [update, setUpdate] = useState<string | null>(null);
+  const [update, setUpdate] = useState<any>(null);
   const { data } = props.location.state;
   console.log(data);
   useEffect(() => {
@@ -16,14 +16,25 @@ const Updates = (props: any) => {
     const bookmarks = await axios.get(
       `https://updates-manange-default-rtdb.firebaseio.com/data/${data}/.json`
     );
-    console.log(typeof bookmarks.data.value.name);
-    setUpdate(bookmarks.data.value.name);
+    console.log(bookmarks);
+    setUpdate(bookmarks.data);
   };
 
   return (
     <div style={{ paddingTop: "30px" }}>
       {update === null && null}
-      {update !== null && <h1>{update}</h1>}
+      {update !== null &&
+        update.data.map((val: any, i: number) => {
+          return (
+            <>
+              {val.name !== "" && val.time !== "" ? (
+                <h3>
+                  {val.name}:{val.time}
+                </h3>
+              ) : null}
+            </>
+          );
+        })}
     </div>
   );
 };

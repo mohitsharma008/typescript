@@ -1,11 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import Button from "../../Reusable/UI/Button/Button";
 const Result = () => {
   const [value, setValue] = useState({ name: "" });
+  const [data, setData] = useState([
+    { name: "", time: "" },
+    { name: "", time: "" },
+    { name: "", time: "" },
+    { name: "", time: "" },
+  ]);
+  const [numberUpdates, setNumberUpdates] = useState(5);
   const history = useHistory();
   // useEffect(() => {
   //   axios
@@ -15,10 +22,14 @@ const Result = () => {
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
+  useEffect(() => {
+    data.push({ name: "", time: "" });
+    console.log(data);
+  }, [numberUpdates]);
   const handleClick = () => {
     axios
       .post(`https://updates-manange-default-rtdb.firebaseio.com/data/.json`, {
-        value,
+        data,
         timeStamp:
           new Date().getDate() +
           "/" +
@@ -40,6 +51,21 @@ const Result = () => {
       })
       .catch((err) => console.log(err));
   };
+  const handleInputField = (e: any, i: any) => {
+    const arr = [...data];
+    if (e.target.name === "description") {
+      arr[i].name = e.target.value;
+      setData(arr);
+    }
+    if (e.target.name === "time") {
+      arr[i].time = e.target.value;
+      setData(arr);
+    }
+  };
+  console.log(data);
+  const handleListUpdates = () => {
+    setNumberUpdates((prev) => prev + 1);
+  };
   return (
     <MotionWrapper>
       <div
@@ -53,15 +79,39 @@ const Result = () => {
       >
         <h3>Result</h3>
         <br />
-        <textarea
-          onChange={(e) => setValue({ name: e.target.value })}
-          name="Text1"
-          value={value.name}
-          cols={40}
-          rows={5}
-        />
-        <p style={{ whiteSpace: "break-spaces" }}></p>
-        <Button onClick={handleClick}>Add Blog</Button>
+        {Array(numberUpdates)
+          .fill(0)
+          .map((n, i) => (
+            <div style={{ alignItems: "center", display: "flex" }}>
+              Desciption Task:
+              <input
+                type="text"
+                style={{ width: 300, height: 30 }}
+                onChange={(e) => handleInputField(e, i)}
+                name="description"
+              />
+              Time:
+              <input
+                type="text"
+                name="time"
+                onChange={(e) => handleInputField(e, i)}
+                style={{ width: 300, height: 30 }}
+              />
+            </div>
+          ))}
+        <div
+          style={{
+            display: "flex",
+            bottom: 50,
+            right: 50,
+            position: "absolute",
+          }}
+        >
+          <div style={{ marginRight: 10 }}>
+            <Button onClick={handleListUpdates}>New</Button>
+          </div>
+          <Button onClick={handleClick}>Save Blog</Button>
+        </div>
       </div>
     </MotionWrapper>
   );

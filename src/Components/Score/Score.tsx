@@ -49,7 +49,7 @@ const Score = () => {
                   transition={{ type: "spring", stiffness: 60 }}
                   key={index}
                   style={{
-                    backgroundColor: "orange",
+                    backgroundColor: "#cf550e",
                     border: "1px solid red",
                     marginBottom: 7,
                     marginRight: 30,
@@ -76,13 +76,13 @@ const Score = () => {
                         backgroundColor: "#152833",
                       }}
                       to={{
-                        pathname: `/score/${user.id}`,
+                        pathname: `/result/${user.id}`,
                         state: {
                           data: keys[index],
                         },
                       }}
                     >
-                      Your Update{" "}
+                      Open Your Update{" "}
                     </Link>
 
                     {/* <Link to={`/score/${user.id}`}>Link</Link> */}

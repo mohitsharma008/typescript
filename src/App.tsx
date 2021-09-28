@@ -7,6 +7,17 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
+import {
+  FaRegShareSquare,
+  FaExpeditedssl,
+  FaPlus,
+  FaHome,
+  FaWhmcs,
+  FaHistory,
+  FaDoorOpen,
+  FaRegPlusSquare,
+  FaUserCheck,
+} from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Home from "./Components/Home/Home";
@@ -46,64 +57,113 @@ function App() {
           <div className="ContentManage">
             {token ? (
               <>
-                <Link
-                  className={`Link ${splitLocation[1] === "" ? "active" : ""}`}
-                  to="/"
-                >
-                  Home
-                </Link>
-                <Link
-                  className={`Link ${
-                    splitLocation[1] === "dashboard" ? "active" : ""
-                  }`}
-                  to="/dashboard"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  className={`Link ${
-                    splitLocation[1] === "score" ? "active" : ""
-                  }`}
-                  to="/score"
-                >
-                  Score
-                </Link>
-                <Link
-                  className={`Link ${
-                    splitLocation[1] === "create" ? "active" : ""
-                  }`}
-                  to="/create"
-                >
-                  Create
-                </Link>
+                <div style={{ display: "flex" }}>
+                  <Link
+                    className={`Link ${
+                      splitLocation[1] === "" ? "active" : ""
+                    }`}
+                    to="/"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>Home</>
+                      <FaHome
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
+                  <Link
+                    className={`Link ${
+                      splitLocation[1] === "dashboard" ? "active" : ""
+                    }`}
+                    to="/dashboard"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>Dashboard</>
+                      <FaWhmcs
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
+                  <Link
+                    className={`Link ${
+                      splitLocation[1] === "result" ? "active" : ""
+                    }`}
+                    to="/result"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>Result</>
+                      <FaHistory
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
+                  <Link
+                    className={`Link ${
+                      splitLocation[1] === "create" ? "active" : ""
+                    }`}
+                    to="/create"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>Create</>
+                      <FaRegPlusSquare
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
 
-                <Link
-                  className={`Link ${
-                    splitLocation[1] === "logout" ? "active" : ""
-                  }`}
-                  to="/logout"
-                >
-                  Logout
-                </Link>
+                  <Link
+                    className={`Link ${
+                      splitLocation[1] === "logout" ? "active" : ""
+                    }`}
+                    to="/logout"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>Logout</>
+                      <FaRegShareSquare
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
+                </div>
               </>
             ) : (
               <>
-                <Link
-                  to="/signup"
-                  className={`Link ${
-                    splitLocation[1] === "signup" ? "active" : ""
-                  }`}
-                >
-                  SignUp
-                </Link>
-                <Link
-                  className={`Link ${
-                    splitLocation[1] === "login" ? "active" : ""
-                  }`}
-                  to="/login"
-                >
-                  Login
-                </Link>
+                <div style={{ display: "flex" }}>
+                  <Link
+                    to="/signup"
+                    className={`Link ${
+                      splitLocation[1] === "signup" ? "active" : ""
+                    }`}
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>SignUp</>
+                      <FaExpeditedssl
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
+
+                  <Link
+                    className={`Link ${
+                      splitLocation[1] === "login" ? "active" : ""
+                    }`}
+                    to="/login"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <>Login</>
+                      <FaDoorOpen
+                        size={20}
+                        style={{ marginLeft: 3, marginTop: 2 }}
+                      />
+                    </div>
+                  </Link>
+                </div>
               </>
             )}
           </div>
@@ -119,7 +179,12 @@ function App() {
             marginRight: 5,
           }}
         >
-          {token && <h3 style={{ color: "orange" }}>{userId}</h3>}
+          {token && (
+            <h3 style={{ color: "orange", display: "flex" }}>
+              <FaUserCheck style={{ marginRight: 3, marginTop: 3 }} />
+              {userId}
+            </h3>
+          )}
         </div>
       </div>
       {/* <div className="Content"> */}
@@ -128,8 +193,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route exact path="/score" component={Score} />
-            <Route exact path="/score/:id" component={Updates} />
+            <Route exact path="/result" component={Score} />
+            <Route exact path="/result/:id" component={Updates} />
 
             <Route path="/create" component={Result} />
             <Route path="/logout" component={Logout} />

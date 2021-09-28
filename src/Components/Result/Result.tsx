@@ -60,7 +60,7 @@ const Result = () => {
           )
           .then((res) => {
             setValue({ name: "" });
-            history.push("/score");
+            history.push("/result");
           })
           .catch((err) => console.log(err));
       }
@@ -98,25 +98,37 @@ const Result = () => {
             overflow: "auto",
           }}
         >
-          <h3>Result</h3>
+          <h3>Create Update</h3>
           <br />
           {Array(numberUpdates)
             .fill(0)
             .map((n, i) => (
               <div style={{ alignItems: "center", display: "flex" }}>
-                Desciption Task:
+                Desciption Task:-
                 <input
                   type="text"
-                  style={{ width: 300, height: 30 }}
+                  style={{
+                    width: 300,
+                    borderRadius: 5,
+                    height: 30,
+                    marginRight: 8,
+                    marginBottom: 4,
+                    border: "none",
+                  }}
                   onChange={(e) => handleInputField(e, i)}
                   name="description"
                 />
-                Time:
+                Time:-
                 <input
                   type="text"
                   name="time"
                   onChange={(e) => handleInputField(e, i)}
-                  style={{ width: 300, height: 30 }}
+                  style={{
+                    width: 100,
+                    borderRadius: 5,
+                    border: "none",
+                    height: 30,
+                  }}
                 />
               </div>
             ))}

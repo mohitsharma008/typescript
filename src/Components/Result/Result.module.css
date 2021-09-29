@@ -1,0 +1,33 @@
+.handleListFull {
+  margin-top: 10px;
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  color: #c2daff;
+  overflow: auto;
+}
+.handleContentList {
+  align-items: center;
+  display: flex;
+}
+.inputDescription {
+  width: 300px;
+  border-radius: 5px;
+  height: 30px;
+  margin-right: 8px;
+  margin-bottom: 4px;
+  border: none;
+}
+.inputTime {
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+}
+.handleBottomBtns {
+  display: flex;
+  right: 50px;
+  bottom: 50px;
+  position: absolute;
+}

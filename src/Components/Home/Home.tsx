@@ -1,5 +1,5 @@
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
-import "./Home.css";
+import style from "./Home.module.css";
 const Home = () => {
   const handleSome = () => {
     const date = new Date().getSeconds();
@@ -7,10 +7,10 @@ const Home = () => {
     console.log(date1);
   };
   return (
-    <div className="homeImage">
+    <div className={style.homeImage}>
       <MotionWrapper>
         <div>
-          <h1 className="homeContent">!! Welcome !!</h1>
+          <h1 className={style.homeContent}>!! Welcome !!</h1>
         </div>
       </MotionWrapper>
     </div>

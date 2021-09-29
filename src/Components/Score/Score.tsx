@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import "./Score.css";
+import style from "./Score.module.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
@@ -49,27 +49,11 @@ const Score = () => {
                   animate={{ x: 0, scale: 1 }}
                   transition={{ type: "spring", stiffness: 60 }}
                   key={index}
-                  style={{
-                    backgroundColor: "#00303F",
-                    border: "1px solid red",
-                    marginBottom: 7,
-                    marginRight: 30,
-                    marginLeft: 30,
-                  }}
+                  className={style.handleCompleteBorder}
                 >
-                  <motion.div
-                    style={{
-                      marginLeft: 5,
-                      marginRight: 5,
-                      flexWrap: "wrap",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      flexShrink: 4,
-                    }}
-                  >
+                  <motion.div className={style.handleContent}>
                     <Link
-                      className="scoreOpnBtn"
+                      className={style.updateOpnBtn}
                       to={{
                         pathname: `/result/${user.id}`,
                         state: {

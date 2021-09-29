@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
+import style from "./Result.module.css";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import Button from "../../Reusable/UI/Button/Button";
 const Result = () => {
@@ -87,34 +88,17 @@ const Result = () => {
       }}
     >
       <MotionWrapper>
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            height: "500px",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "#c2daff",
-            overflow: "auto",
-          }}
-        >
+        <div className={style.handleListFull}>
           <h3>Create Update</h3>
           <br />
           {Array(numberUpdates)
             .fill(0)
             .map((n, i) => (
-              <div style={{ alignItems: "center", display: "flex" }}>
+              <div className={style.handleContentList}>
                 Desciption Task:-
                 <input
                   type="text"
-                  style={{
-                    width: 300,
-                    borderRadius: 5,
-                    height: 30,
-                    marginRight: 8,
-                    marginBottom: 4,
-                    border: "none",
-                  }}
+                  className={style.inputDescription}
                   onChange={(e) => handleInputField(e, i)}
                   name="description"
                 />
@@ -123,23 +107,11 @@ const Result = () => {
                   type="text"
                   name="time"
                   onChange={(e) => handleInputField(e, i)}
-                  style={{
-                    width: 100,
-                    borderRadius: 5,
-                    border: "none",
-                    height: 30,
-                  }}
+                  className={style.inputTime}
                 />
               </div>
             ))}
-          <div
-            style={{
-              display: "flex",
-              right: 50,
-              bottom: 50,
-              position: "absolute",
-            }}
-          >
+          <div className={style.handleBottomBtns}>
             <div style={{ marginRight: 10 }}>
               <Button onClick={handleListUpdates}>New</Button>
             </div>

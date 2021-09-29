@@ -4,12 +4,15 @@ import axios from "axios";
 import style from "./Score.module.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+
+import BeatLoader from "react-spinners/BeatLoader";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import { Link, withRouter } from "react-router-dom";
 import { warnConditionallyRequiredProps } from "@fluentui/utilities";
 const Score = () => {
   const [data, setData] = useState<null | string[]>(null);
   const [keys, setKeys] = useState<null | string[]>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const location = useLocation();
   console.log(location);
   const getUser = async () => {
@@ -18,8 +21,7 @@ const Score = () => {
       .then((res) => {
         setKeys(Object.keys(res.data));
         setData(Object.values(res.data));
-        console.warn("rerender");
-        console.log("hhhh");
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -37,8 +39,9 @@ const Score = () => {
   return (
     <MotionWrapper>
       <div style={{ paddingTop: "35px" }}>
-        <p></p>
-
+        <div style={{ textAlign: "center" }}>
+          <BeatLoader color={"white"} loading={loading} size={50} />
+        </div>
         {data &&
           keys &&
           data.map((user: any, index: any) => {

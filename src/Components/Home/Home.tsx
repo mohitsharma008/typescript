@@ -9,8 +9,10 @@ const Home = () => {
   return (
     <div className={style.homeImage}>
       <MotionWrapper>
-        <div>
-          <h1 className={style.homeContent}>!! Welcome !!</h1>
+        <div className={style.textContentWrpper}>
+          <h1 className={style.homeContent}>
+            !! Greetings, I Think You All Doing Well !!
+          </h1>
         </div>
       </MotionWrapper>
     </div>

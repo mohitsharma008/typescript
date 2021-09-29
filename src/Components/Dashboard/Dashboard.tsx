@@ -33,7 +33,7 @@ const Dashboard = () => {
     <MotionWrapper>
       {" "}
       <div style={{ paddingTop: "35px", color: "#bbc5c7" }}>
-        <h3>PROGRAMMING LANGUAGES</h3>
+        <h3>PROGRAMMING LANGUAGES</h3>{" "}
         <ul style={{ marginLeft: 15 }}>
           <li>
             <b>Java® </b>- The Java programming language was developed by Sun

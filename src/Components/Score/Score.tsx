@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import "./Score.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
@@ -49,7 +50,7 @@ const Score = () => {
                   transition={{ type: "spring", stiffness: 60 }}
                   key={index}
                   style={{
-                    backgroundColor: "#cf550e",
+                    backgroundColor: "#00303F",
                     border: "1px solid red",
                     marginBottom: 7,
                     marginRight: 30,
@@ -68,13 +69,7 @@ const Score = () => {
                     }}
                   >
                     <Link
-                      style={{
-                        textDecoration: "none",
-                        color: "white",
-                        fontSize: 18,
-                        border: "1px solid #152833",
-                        backgroundColor: "#152833",
-                      }}
+                      className="scoreOpnBtn"
                       to={{
                         pathname: `/result/${user.id}`,
                         state: {

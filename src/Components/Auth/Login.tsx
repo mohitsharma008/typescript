@@ -10,6 +10,7 @@ import CardLogin from "../../Reusable/UI/CardLogin/CardLogin";
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const { signIn } = useActions();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "Email") {
@@ -27,8 +28,9 @@ const Login = () => {
           setEmail("");
           setPassword("");
           signIn(res.user.multiFactor.user.accessToken);
+          setError(null);
         })
-        .catch((err) => console.log("error"));
+        .catch((err) => setError("please enter correct details"));
     } catch (error) {
       console.error(error);
     }
@@ -72,18 +74,25 @@ const Login = () => {
             />
             <div
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                color: "red",
+                marginBottom: 10,
               }}
-            ></div>
+            >
+              {error}
+            </div>
             <Link
               to="/signup"
-              style={{ color: "white", textDecoration: "none" }}
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "end",
+                color: "white",
+                width: 300,
+                textDecoration: "none",
+                marginBottom: 8,
+              }}
             >
-              <br />
               Create a new account?
-              <hr />
             </Link>
             <Button type={"submit"}>SignIn</Button>
           </motion.div>

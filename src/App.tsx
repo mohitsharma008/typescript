@@ -18,6 +18,7 @@ import {
   FaRegPlusSquare,
   FaUserCheck,
 } from "react-icons/fa";
+import Contact from "./Components/Contact/Contact";
 import { useEffect, useState } from "react";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Home from "./Components/Home/Home";
@@ -53,7 +54,7 @@ function App() {
     <div className="Body">
       {/* <Router> */}
       <div className="Header">
-        <div style={{ width: "50%" }}>
+        <div style={{ width: "70%" }}>
           <div className="ContentManage">
             {token ? (
               <>
@@ -170,7 +171,7 @@ function App() {
         </div>
         <div
           style={{
-            width: "50%",
+            width: "30%",
             height: "30px",
             display: "flex",
             justifyContent: "flex-end",
@@ -180,7 +181,7 @@ function App() {
           }}
         >
           {token && (
-            <h3 style={{ color: "orange", display: "flex" }}>
+            <h3 style={{ color: "#d2f1b4", display: "flex" }}>
               <FaUserCheck style={{ marginRight: 3, marginTop: 3 }} />
               {userId}
             </h3>
@@ -197,6 +198,8 @@ function App() {
             <Route exact path="/result/:id" component={Updates} />
 
             <Route path="/create" component={Result} />
+            <Route path="/contact" component={Contact} />
+
             <Route path="/logout" component={Logout} />
 
             <Redirect to="/" />

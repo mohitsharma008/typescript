@@ -72,11 +72,20 @@ const SignUp = () => {
             />
             <Link
               to="/login"
-              style={{ color: "white", textDecoration: "none" }}
+              style={{
+                marginTop: 8,
+                marginBottom: 8,
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "end",
+
+                width: 300,
+                color: "white",
+                textDecoration: "none",
+              }}
             >
               <br />
               Already have an account?
-              <hr />
             </Link>
             <Button type="submit">SignUp</Button>
           </motion.div>

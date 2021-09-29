@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Home from "./Components/Home/Home";
 import Score from "./Components/Score/Score";
-import Result from "./Components/Result/Result";
+import Create from "./Components/Create/Create";
 import SignUp from "./Components/Auth/SignUp";
 import Login from "./Components/Auth/Login";
 import Logout from "./Components/Auth/Logout";
@@ -197,7 +197,7 @@ function App() {
             <Route exact path="/result" component={Score} />
             <Route exact path="/result/:id" component={Updates} />
 
-            <Route path="/create" component={Result} />
+            <Route path="/create" component={Create} />
             <Route path="/contact" component={Contact} />
 
             <Route path="/logout" component={Logout} />

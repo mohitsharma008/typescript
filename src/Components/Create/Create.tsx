@@ -2,10 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
-import style from "./Result.module.css";
+import style from "./Create.module.css";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import Button from "../../Reusable/UI/Button/Button";
-const Result = () => {
+const Create = () => {
   const [value, setValue] = useState({ name: "" });
   const [data, setData] = useState([
     { name: "", time: "" },
@@ -122,4 +122,4 @@ const Result = () => {
     </div>
   );
 };
-export default Result;
+export default Create;

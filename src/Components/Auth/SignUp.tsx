@@ -7,10 +7,14 @@ import { useActions } from "../../Redux/hooks/useAction";
 import Input from "../../Reusable/UI/Input/Input";
 import CardLogin from "../../Reusable/UI/CardLogin/CardLogin";
 import { motion } from "framer-motion";
+import style from "./Login.module.css";
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const { signUp } = useActions();
+  const regexPassword =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "Email") {
@@ -21,17 +25,22 @@ const SignUp = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await authOne
-        .createUserWithEmailAndPassword(email, password)
-        .then((res: any) => {
-          setEmail("");
-          setPassword("");
-          signUp(res.user.multiFactor.user.accessToken);
-        })
-        .catch((err) => console.log("error"));
-    } catch (error) {
-      console.error(error);
+    if (regexPassword.test(password)) {
+      try {
+        await authOne
+          .createUserWithEmailAndPassword(email, password)
+          .then((res: any) => {
+            setEmail("");
+            setPassword("");
+            signUp(res.user.multiFactor.user.accessToken);
+            setError(null);
+          })
+          .catch((err) => console.log("error"));
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setError("6 digit long a number, a special character");
     }
     // createAccount(email, password);
   };
@@ -43,21 +52,27 @@ const SignUp = () => {
             initial={{ x: 150, scale: 1 }}
             animate={{ x: 0, scale: 1 }}
             transition={{ stiffness: 100, type: "spring" }}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              backgroundColor: "#0e3047",
-              paddingBottom: 40,
-              paddingRight: 20,
-              paddingLeft: 20,
-              paddingTop: 40,
-              borderRadius: "5px",
-              boxShadow: "0px 0px 15px 5px orange",
-            }}
+            className={style.loginCardHandle}
+            // style={{
+            //   display: "flex",
+            //   justifyContent: "center",
+            //   alignItems: "center",
+            //   flexDirection: "column",
+            //   backgroundColor: "#0e3047",
+            //   paddingBottom: 40,
+            //   paddingRight: 20,
+            //   paddingLeft: 20,
+            //   paddingTop: 40,
+            //   borderRadius: "5px",
+            //   boxShadow: "0px 0px 15px 5px orange",
+            // }}
           >
-            <h3 style={{ color: "white", marginBottom: 20 }}>SIGNUP</h3>
+            <h3
+              className={style.textWrapper}
+              // style={{ color: "white", marginBottom: 20 }}
+            >
+              SIGNUP
+            </h3>
             <Input
               label="Email"
               onChange={(e) => handleChange(e)}
@@ -70,19 +85,27 @@ const SignUp = () => {
               value={password}
               type="password"
             />
+            <div
+              className={style.errorWrapper}
+              // style={{ marginBottom: 2, marginTop: 5, color: "#ff0a0a" }}
+            >
+              {error}
+            </div>
+
             <Link
               to="/login"
-              style={{
-                marginTop: 8,
-                marginBottom: 8,
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "end",
+              className={style.createLink}
+              // style={{
+              //   marginTop: 8,
+              //   marginBottom: 8,
+              //   display: "flex",
+              //   justifyContent: "flex-end",
+              //   alignItems: "end",
 
-                width: 300,
-                color: "white",
-                textDecoration: "none",
-              }}
+              //   width: 300,
+              //   color: "white",
+              //   textDecoration: "none",
+              // }}
             >
               <br />
               Already have an account?

@@ -17,12 +17,15 @@
   height: 30px;
   margin-right: 8px;
   margin-bottom: 4px;
+  background-color: #c3dbdb;
   border: none;
 }
 .inputTime {
   width: 100px;
   border-radius: 5px;
+  background-color: #c3dbdb;
   border: none;
+
   height: 30px;
 }
 .handleBottomBtns {

@@ -2,6 +2,7 @@ import OtherComponent from "../other/otherComponent";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import { useState } from "react";
 const Dashboard = () => {
+  const [password, setPassword] = useState("");
   const [logo, setLogo] = useState([
     {
       name: "Java",

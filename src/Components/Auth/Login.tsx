@@ -7,6 +7,7 @@ import Input from "../../Reusable/UI/Input/Input";
 import { motion } from "framer-motion";
 import MotionWrapper from "../../Reusable/motionWrapper/motionWrapper";
 import CardLogin from "../../Reusable/UI/CardLogin/CardLogin";
+import style from "./Login.module.css";
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -43,21 +44,9 @@ const Login = () => {
             initial={{ x: 150, scale: 1 }}
             animate={{ x: 0, scale: 1 }}
             transition={{ stiffness: 100, type: "spring" }}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              backgroundColor: "#0e3047",
-              paddingBottom: 40,
-              paddingRight: 20,
-              paddingLeft: 20,
-              paddingTop: 40,
-              boxShadow: "0px 0px 15px 5px orange",
-              borderRadius: "5px",
-            }}
+            className={style.loginCardHandle}
           >
-            <h3 style={{ color: "white", marginBottom: 20 }}>LOGIN</h3>
+            <h3 className={style.textWrapper}>LOGIN</h3>
 
             <Input
               label="Email"
@@ -72,26 +61,8 @@ const Login = () => {
               type="password"
               onChange={(e) => handleChange(e)}
             />
-            <div
-              style={{
-                color: "red",
-                marginBottom: 10,
-              }}
-            >
-              {error}
-            </div>
-            <Link
-              to="/signup"
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "end",
-                color: "white",
-                width: 300,
-                textDecoration: "none",
-                marginBottom: 8,
-              }}
-            >
+            <div className={style.errorWrapper}>{error}</div>
+            <Link to="/signup" className={style.createLink}>
               Create a new account?
             </Link>
             <Button type={"submit"}>SignIn</Button>

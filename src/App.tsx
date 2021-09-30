@@ -74,7 +74,7 @@ function App() {
               </div>
               <div className="LinkWrapper" id={showLinks ? "hidden" : ""}>
                 <Link
-                  onClick={handleToggle}
+                  onClick={() => setShowLinks(false)}
                   className={`Link ${splitLocation[1] === "" ? "active" : ""}`}
                   to="/"
                 >
@@ -84,7 +84,7 @@ function App() {
                   </div>
                 </Link>
                 <Link
-                  onClick={handleToggle}
+                  onClick={() => setShowLinks(false)}
                   className={`Link ${
                     splitLocation[1] === "dashboard" ? "active" : ""
                   }`}
@@ -99,7 +99,7 @@ function App() {
                   </div>
                 </Link>
                 <Link
-                  onClick={handleToggle}
+                  onClick={() => setShowLinks(false)}
                   className={`Link ${
                     splitLocation[1] === "result" ? "active" : ""
                   }`}
@@ -114,7 +114,7 @@ function App() {
                   </div>
                 </Link>
                 <Link
-                  onClick={handleToggle}
+                  onClick={() => setShowLinks(false)}
                   className={`Link ${
                     splitLocation[1] === "create" ? "active" : ""
                   }`}
@@ -130,7 +130,7 @@ function App() {
                 </Link>
 
                 <Link
-                  onClick={handleToggle}
+                  onClick={() => setShowLinks(false)}
                   className={`Link ${
                     splitLocation[1] === "logout" ? "active" : ""
                   }`}
@@ -150,7 +150,6 @@ function App() {
             <>
               <div className="LinkWrapperAuth">
                 <Link
-                  onClick={handleToggle}
                   to="/signup"
                   className={`Link ${
                     splitLocation[1] === "signup" ? "active" : ""
@@ -166,7 +165,6 @@ function App() {
                 </Link>
 
                 <Link
-                  onClick={handleToggle}
                   className={`Link ${
                     splitLocation[1] === "login" ? "active" : ""
                   }`}

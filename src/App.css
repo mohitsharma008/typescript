@@ -26,6 +26,11 @@
   display: flex;
   max-height: 40px;
 }
+
+.LinkWrapperAuth {
+  display: flex;
+  max-height: 40px;
+}
 #hidden {
   display: none;
 }

@@ -62,15 +62,16 @@ function App() {
       <div className="Header">
         <div className="HeaderLinksLeft">
           {/* <div className="ContentManageLink"> */}
-          <div className="ToggleButton">
-            <FaBars
-              onClick={handleToggle}
-              style={{ marginLeft: 10, color: "#d2f1b4" }}
-              size={25}
-            />
-          </div>
+
           {token ? (
             <>
+              <div className="ToggleButton">
+                <FaBars
+                  onClick={handleToggle}
+                  style={{ marginLeft: 10, color: "#d2f1b4" }}
+                  size={25}
+                />
+              </div>
               <div className="LinkWrapper" id={showLinks ? "hidden" : ""}>
                 <Link
                   onClick={handleToggle}
@@ -147,7 +148,7 @@ function App() {
             </>
           ) : (
             <>
-              <div className="LinkWrapper" id={showLinks ? "hidden" : ""}>
+              <div className="LinkWrapperAuth">
                 <Link
                   onClick={handleToggle}
                   to="/signup"
